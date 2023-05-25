@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            /*--very-light-pink: #C7C7C7;*/ /* Very light pink */
+            --background-color: #C7C7C7; /* Very light pink */
+            --text-input-filed: #F7F7F7;
+            /* --hospital-green: #ACD9B2; */
+            --store-green: #32A562; /* Green Store */
+            --sm: 14px;
+            --md: 16px;
+            --lg: 18px;
+            --xl: 24px;
+        }
+        body{
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .login {
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+        .form-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            width: 300px;
+        }
+        .logo {
+            height: 160px;
+            width: 160px;
+
+            /* margin-bottom: 32px; */
+            margin-bottom: 12px;
+            justify-self: center;
+
+            display: none;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form a {
+            text-align: center;
+            font-size: var(--sm);
+            color: var(--store-green);
+            text-decoration: none;
+            margin-bottom: 32px;
+        }
+        .label {
+            margin-bottom: 4px;
+            font-size: var(--md);
+            font-weight: bold;
+        }
+        .input {
+            background-color: var(--text-input-filed);
+            border: none;
+            border-radius: 4px;
+            height: 32px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: var(--md);
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+        .primary-button {
+            background-color: var(--store-green);
+            border: none;
+            border-radius: 4px;
+            color: var(--white);
+            width: 100%;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: var(--md);
+            font-weight: bold;
+            height: 48px;
+        }
+        .secondary-button {
+            background-color: var(--white);
+            border: 2px solid var(--store-green);
+            border-radius: 4px;
+            color: var(--store-green);
+            width: 100%;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: var(--md);
+            font-weight: bold;
+            height: 48px;
+        }
+        .login-button {
+            margin-top: 16px;
+            margin-bottom: 32px;
+        }
+        @media (max-width: 480px) {
+            .logo {
+                display: block;
+            }
+            .secondary-button {
+                margin-top: 8rem; /* 128px */
+                bottom: 4rem; /* 64px */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <div class="form-container">
+            <img src="./logos/Domer_Logo.svg" alt="logo" class="logo" >
+
+            <form action="/" class="form">
+                <!-- Password -->
+                <label for="email" class="label">Email address</label>
+                <input type="password" id="password" placeholder="example@example.com" class="input input-password">
+
+                <!-- Confirm password -->
+                <label for="password" class="label">Password</label>
+                <input type="password" id="password" placeholder="**********" class="input input-password">
+
+                <!-- Submit button -->
+                <input type="submit" value="Log In" class="primary-button login-button">
+
+                <!-- Forgot password -->
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </form>
+
+            <button class="secondary-button signup-button">Sign Up</button>
+        </div>
+    </div>
+</body>
+</html>
