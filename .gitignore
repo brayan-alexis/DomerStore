@@ -378,6 +378,8 @@ FodyWeavers.xsd
 
 # VS Code files for those working on multiple tools
 .vscode/*
+# Ignore the .vscode directory that contains local Visual Studio Code configurations
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
