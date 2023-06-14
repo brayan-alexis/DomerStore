@@ -6,27 +6,45 @@ const $ = (selector) => document.querySelector(selector); // Shortcut for queryS
 const menuIcon = $('.menu'); 
 const menuEmail = $('.navbar-email');
 const cartIcon = $('.navbar-shopping-cart');
+const hideProductDetail = $('.product-detail-close'); // Close product detail icon
 // Menus
 const mobileMenu = $('.mobile-menu'); 
 const desktopMenu = $('.desktop-menu');
-
-const shoppingCartContainer = $('#shopping-cart-container');
 // Containers
 const cardsContainer = $('.cards-container'); // Container for product cards
+// Aside containers
+const shoppingCartContainer = $('.shopping-cart-container');
+const productDetailContainer = $('.product-detail-container');
+
 
 // Toggle menu on click
 const toggleMobileMenu = () => { 
     shoppingCartContainer.classList.add('inactive');
+    productDetailContainer.classList.add('inactive');
     mobileMenu.classList.toggle('inactive'); 
 } 
 const toggleDesktopMenu = () => {
     shoppingCartContainer.classList.add('inactive');
+    productDetailContainer.classList.add('inactive');
     desktopMenu.classList.toggle('inactive');
 }
 const toggleshoppingCartContainer = () => {
     mobileMenu.classList.add('inactive');
     desktopMenu.classList.add('inactive');
+    productDetailContainer.classList.add('inactive');
     shoppingCartContainer.classList.toggle('inactive');
+}
+
+// Function to hide product detail container
+function hideProductDetailContainer (){
+    productDetailContainer.classList.toggle('inactive');
+}
+// Function to show product detail container
+function showProductDetail (){
+    // mobileMenu.classList.add('inactive'); //Maybe not needed
+    desktopMenu.classList.add('inactive');
+    shoppingCartContainer.classList.add('inactive');
+    productDetailContainer.classList.remove('inactive');
 }
 
 // Add event listener to menuIcon to toggle mobile menu
@@ -35,6 +53,8 @@ menuIcon.addEventListener('click', toggleMobileMenu);
 menuEmail.addEventListener('click', toggleDesktopMenu);
 // Add event listener to cartIcon to toggle product detail
 cartIcon.addEventListener('click', toggleshoppingCartContainer);
+// Add event listener to hideProductDetail to close product detail container
+hideProductDetail.addEventListener('click', hideProductDetailContainer);
 
 const productList = []; // List of products
 
@@ -64,6 +84,7 @@ function renderProducts(productList){
     for (product of productList) {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
+        productCard.addEventListener('click', showProductDetail);
 
         const productImage = document.createElement('img');
         productImage.src = product.image;
@@ -89,6 +110,5 @@ function renderProducts(productList){
         cardsContainer.appendChild(productCard); // Add productCard to cardsContainer
     }
 }
-
 // Render products
 renderProducts(productList);
