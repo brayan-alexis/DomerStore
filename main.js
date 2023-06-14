@@ -1,11 +1,10 @@
-// const menuEmail = document.querySelector('.navbar-email');
-// const desktopMenu = document.querySelector('.desktop-menu');
 const $ = (selector) => document.querySelector(selector); // Shortcut for querySelector
 
 // Nanbar menu icons
 const menuIcon = $('.menu'); 
 const menuEmail = $('.navbar-email');
 const cartIcon = $('.navbar-shopping-cart');
+// Product detail
 const hideProductDetail = $('.product-detail-close'); // Close product detail icon
 // Menus
 const mobileMenu = $('.mobile-menu'); 
