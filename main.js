@@ -62,7 +62,7 @@ productList.push({
     id: '1',
     name: 'Basic White T-Shirt', 
     price: 25,
-    image: 'https://images.pexels.com/photos/428340/pexels-photo-428340.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+    image: 'https://images.pexels.com/photos/4101142/pexels-photo-4101142.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 });
 productList.push({
     id: '2',
@@ -74,7 +74,19 @@ productList.push({
     id: '3',
     name: 'Basic Gray T-Shirt',
     price: 25,
-    image: 'https://images.pexels.com/photos/428340/pexels-photo-428340.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+    image: 'https://images.pexels.com/photos/14769479/pexels-photo-14769479.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+});
+productList.push({
+    id: '4',
+    name: 'Basic Red T-Shirt',
+    price: 25,
+    image: 'https://images.pexels.com/photos/8249696/pexels-photo-8249696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+});
+productList.push({
+    id: '5',
+    name: 'Basic Blue T-Shirt',
+    price: 25,
+    image: 'https://images.pexels.com/photos/11843404/pexels-photo-11843404.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 });
 
 // Function to render products
