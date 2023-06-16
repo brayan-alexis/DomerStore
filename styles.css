@@ -6,6 +6,7 @@
     --text-input-filed: #F7F7F7;
     /* --hospital-green: #ACD9B2; */
     --store-green: #32A562; /* Green Store */
+    --box-shadow-color: #00000029; /* Black with 16% opacity, 2nd option rgba(0, 0, 0, 0.2) */ 
     --sm: 14px;
     --md: 16px;
     --lg: 18px;
@@ -197,7 +198,7 @@ aside {
     right: 0;
     background-color: var(--white);
     transition: .4s;
-    box-shadow: -2px 2px 4px var(--background-color); /* left, top, blur, color */
+    box-shadow: -2px 2px 4px var(--box-shadow-color); /* left, top, blur, color */
 }
 
 /* Shopping Cart */
