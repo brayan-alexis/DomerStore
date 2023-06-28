@@ -88,6 +88,12 @@ productList.push({
     price: 25,
     image: 'https://images.pexels.com/photos/11843404/pexels-photo-11843404.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 });
+productList.push({
+    id: '6',
+    name: 'Basic Yellow T-Shirt',
+    price: 25,
+    image: 'https://images.pexels.com/photos/8249697/pexels-photo-8249697.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+});
 
 // Function to render products
 function renderProducts(productList){
