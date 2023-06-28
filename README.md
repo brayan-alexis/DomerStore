@@ -1,2 +1,2 @@
-# Domer_Store
+# Domer Store
 Digital Store
