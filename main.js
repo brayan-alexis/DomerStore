@@ -250,7 +250,7 @@ function renderShoppingCartProducts(product) {
     shoppingCartFigureRemove.src = 'assets/icons/icon_close.png';
     shoppingCartFigureRemove.alt = 'close';
     const buttonRemoveFromCart = document.createElement('button');
-    //buttonRemoveFromCart.classList.add('primary-button', 'remove-from-cart-button');
+    buttonRemoveFromCart.classList.add('remove-from-cart-button');
     buttonRemoveFromCart.appendChild(shoppingCartFigureRemove); // Add shoppingCartFigureRemove to buttonRemoveFromCart
     shoppingCartFigure.appendChild(buttonRemoveFromCart); // Add buttonRemoveFromCart to shoppingCartFigure
 
@@ -274,10 +274,43 @@ function renderShoppingCartProducts(product) {
 
     // Move the shopping cart products container to be the first child of myOrderContent
     myOrderContent.insertBefore(shoppingCartProductsContainer, myOrderContent.firstChild);
+
+    // Update the total price
+    updateTotalPrice();
 }
 
 // Function to add product to shopping cart
 function addShoppingCart() {
     // Add product to shopping cart
     renderShoppingCartProducts(currentProduct);
+}
+
+// Function to update the total price
+function updateTotalPrice() {
+    // Select the shopping cart products container
+    const shoppingCartProductsContainer = document.querySelector('.shopping-cart-products');
+
+    // Select all the shopping cart products
+    const shoppingCartProducts = shoppingCartProductsContainer.querySelectorAll('.shopping-cart');
+
+    // Select the total price
+    const totalPrice = document.querySelector('.total-price');
+
+    // Variable to store the total price
+    let totalPriceValue = 0;
+
+    // Loop through all the shopping cart products
+    shoppingCartProducts.forEach(shoppingCartProduct => {
+        // Select the price of the current shopping cart product
+        const shoppingCartPrice = shoppingCartProduct.querySelector('p:nth-child(3)');
+
+        // Get the price value of the current shopping cart product
+        const shoppingCartPriceValue = Number(shoppingCartPrice.textContent.replace('$', ''));
+
+        // Add the price value of the current shopping cart product to the total price
+        totalPriceValue += shoppingCartPriceValue;
+    });
+
+    // Update the total price
+    totalPrice.textContent = `$${totalPriceValue}.00`;
 }
