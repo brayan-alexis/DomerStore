@@ -5,7 +5,7 @@ const menuIcon = $('.menu');
 const menuEmail = $('.navbar-email');
 const cartIcon = $('.navbar-shopping-cart');
 // Product detail
-const hideProductDetail = $('.product-detail-close'); // Close product detail icon
+//const hideProductDetail = $('.product-detail-close'); // Close product detail icon
 // Menus
 const mobileMenu = $('.mobile-menu'); 
 const desktopMenu = $('.desktop-menu');
@@ -53,7 +53,7 @@ menuEmail.addEventListener('click', toggleDesktopMenu);
 // Add event listener to cartIcon to toggle product detail
 cartIcon.addEventListener('click', toggleshoppingCartContainer);
 // Add event listener to hideProductDetail to close product detail container
-hideProductDetail.addEventListener('click', hideProductDetailContainer);
+//hideProductDetail.addEventListener('click', hideProductDetailContainer);
 
 const productList = []; // List of products
 
@@ -137,15 +137,26 @@ function renderProducts(productList){
 // Render products
 renderProducts(productList);
 
+// Variable para hacer referencia al producto actualmente abierto
+let currentProduct = null;
+
 // Function to show product detail container
 function showProductDetail (){
+    // Eliminar los nodos hijos del contenedor de detalles del producto actual
+    while (productDetailContainer.firstChild) {
+        productDetailContainer.removeChild(productDetailContainer.firstChild);
+    }
+
     desktopMenu.classList.add('inactive');
     shoppingCartContainer.classList.add('inactive');
     productDetailContainer.classList.remove('inactive');
-    const productId = this.dataset.productId; // Get the productId from the clicked product card
-    const product = productList.find(item => item.id === productId); // Find the product by its id
+
+    const productId = this.dataset.productId;
+    const product = productList.find(item => item.id === productId);
+
     if (product) {
-        renderProductDetail(product); // Call a function to render the product details in the container
+        renderProductDetail(product);
+        currentProductDetail = product;
     }
 }
 
