@@ -11,8 +11,9 @@ const mobileMenu = $('.mobile-menu');
 const desktopMenu = $('.desktop-menu');
 // Containers
 const cardsContainer = $('.cards-container'); // Container for product cards
-// Aside containers
+
 const shoppingCartContainer = $('.shopping-cart-container');
+const shoppingCartProducts = $('.shopping-cart-products');
 const productDetailContainer = $('.product-detail-container');
 
 
@@ -125,6 +126,7 @@ function renderProducts(productList){
         productInfoDiv.append(productPrice, productName); // Add productPrice and productName to productInfoDiv
 
         const productFigure = document.createElement('figure');
+        //productFigure.addEventListener('click', addShoppingCart);
         const productFigureImg = document.createElement('img');
         productFigureImg.src = 'assets/icons/bt_add_to_cart.svg';
         productFigure.appendChild(productFigureImg); // Add productFigureImg to productFigure
@@ -137,12 +139,12 @@ function renderProducts(productList){
 // Render products
 renderProducts(productList);
 
-// Variable para hacer referencia al producto actualmente abierto
+// Variable to store the current product
 let currentProduct = null;
 
 // Function to show product detail container
 function showProductDetail (){
-    // Eliminar los nodos hijos del contenedor de detalles del producto actual
+    // Clear the previous content of productDetailContainer
     while (productDetailContainer.firstChild) {
         productDetailContainer.removeChild(productDetailContainer.firstChild);
     }
@@ -156,7 +158,7 @@ function showProductDetail (){
 
     if (product) {
         renderProductDetail(product);
-        currentProductDetail = product;
+        currentProduct = product;
     }
 }
 
@@ -192,6 +194,7 @@ function renderProductDetail(product) {
 
     // Button to add product to cart
     const productFigure = document.createElement('figure');
+    productFigure.addEventListener('click', addShoppingCart);
     const productFigureImg = document.createElement('img');
     productFigureImg.src = 'assets/icons/bt_add_to_cart.svg';
     const buttonAddToCart = document.createElement('button');
@@ -213,4 +216,68 @@ function renderProductDetail(product) {
     productDetailContainer.appendChild(productDetailClose);
     productDetailContainer.appendChild(productImage);
     productDetailContainer.appendChild(divProductDetail);
+}
+
+// Function to render shopping cart products
+function renderShoppingCartProducts(product) {
+    const shoppingCartProducts = document.querySelector('.shopping-cart-products'); // Select the shopping cart products container
+
+    // Create product container
+    const productContainer = document.createElement('div');
+    productContainer.classList.add('product-container');
+
+    // Create shopping cart structure
+    const shoppingCart = document.createElement('div');
+    shoppingCart.classList.add('shopping-cart');
+
+    // Figure
+    const shoppingCartFigure = document.createElement('figure');
+    const shoppingCartFigureImg = document.createElement('img');
+    shoppingCartFigureImg.src = product.image;
+    shoppingCartFigureImg.alt = product.name;
+    shoppingCartFigure.appendChild(shoppingCartFigureImg); // Add shoppingCartFigureImg to shoppingCartFigure
+
+    // Title (p) for shopping cart
+    const shoppingCartTitle = document.createElement('p');
+    shoppingCartTitle.textContent = product.name;
+
+    // Price (p) for shopping cart
+    const shoppingCartPrice = document.createElement('p');
+    shoppingCartPrice.textContent = `$${product.price}.00`;
+
+    // Button to remove product from cart
+    const shoppingCartFigureRemove = document.createElement('img');
+    shoppingCartFigureRemove.src = 'assets/icons/icon_close.png';
+    shoppingCartFigureRemove.alt = 'close';
+    const buttonRemoveFromCart = document.createElement('button');
+    //buttonRemoveFromCart.classList.add('primary-button', 'remove-from-cart-button');
+    buttonRemoveFromCart.appendChild(shoppingCartFigureRemove); // Add shoppingCartFigureRemove to buttonRemoveFromCart
+    shoppingCartFigure.appendChild(buttonRemoveFromCart); // Add buttonRemoveFromCart to shoppingCartFigure
+
+    shoppingCart.appendChild(shoppingCartFigure);
+    shoppingCart.appendChild(shoppingCartTitle);
+    shoppingCart.appendChild(shoppingCartPrice);
+    shoppingCart.appendChild(shoppingCartFigureRemove);
+
+    // Add shopping cart to the product container
+    shoppingCartProducts.appendChild(shoppingCart);
+
+    // Add shopping cart products to the shopping cart products container
+    shoppingCartContainer.appendChild(shoppingCartProducts);
+
+    // Add shopping cart products to the shopping cart products container
+    const shoppingCartProductsContainer = document.querySelector('.shopping-cart-products');
+    const myOrderContent = document.querySelector('.my-order-content');
+
+    // Add the rendered shopping cart product to the shopping cart products container
+    shoppingCartProductsContainer.appendChild(shoppingCart);
+
+    // Move the shopping cart products container to be the first child of myOrderContent
+    myOrderContent.insertBefore(shoppingCartProductsContainer, myOrderContent.firstChild);
+}
+
+// Function to add product to shopping cart
+function addShoppingCart() {
+    // Add product to shopping cart
+    renderShoppingCartProducts(currentProduct);
 }
