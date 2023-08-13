@@ -249,10 +249,11 @@ function renderShoppingCartProducts(product) {
     const shoppingCartFigureRemove = document.createElement('img');
     shoppingCartFigureRemove.src = 'assets/icons/icon_close.png';
     shoppingCartFigureRemove.alt = 'close';
-    const buttonRemoveFromCart = document.createElement('button');
-    buttonRemoveFromCart.classList.add('remove-from-cart-button');
-    buttonRemoveFromCart.appendChild(shoppingCartFigureRemove); // Add shoppingCartFigureRemove to buttonRemoveFromCart
-    shoppingCartFigure.appendChild(buttonRemoveFromCart); // Add buttonRemoveFromCart to shoppingCartFigure
+    //const buttonRemoveFromCart = document.createElement('button');
+    shoppingCartFigureRemove.classList.add('remove-from-cart-button');
+    shoppingCartFigureRemove.addEventListener('click', removeShoppingCartProduct);
+    //buttonRemoveFromCart.appendChild(shoppingCartFigureRemove); // Add shoppingCartFigureRemove to buttonRemoveFromCart
+    //shoppingCartFigure.appendChild(buttonRemoveFromCart); // Add buttonRemoveFromCart to shoppingCartFigure
 
     shoppingCart.appendChild(shoppingCartFigure);
     shoppingCart.appendChild(shoppingCartTitle);
@@ -313,4 +314,16 @@ function updateTotalPrice() {
 
     // Update the total price
     totalPrice.textContent = `$${totalPriceValue}.00`;
+}
+
+// Function to remove shopping cart product
+function removeShoppingCartProduct() {
+    // Select the shopping cart product to remove
+    const shoppingCartProductToRemove = this.closest('.shopping-cart');
+
+    // Remove the shopping cart product
+    shoppingCartProductToRemove.remove();
+
+    // Update the total price
+    updateTotalPrice();
 }
