@@ -246,8 +246,10 @@ function renderShoppingCartProducts(product) {
     shoppingCartPrice.textContent = `$${product.price}.00`;
 
     // Button to remove product from cart
-    const shoppingCartFigureRemove = document.createElement('img');
-    shoppingCartFigureRemove.src = 'assets/icons/icon_close.png';
+    //const shoppingCartFigureRemove = document.createElement('img');
+    const shoppingCartFigureRemove = document.createElement('p');
+    //shoppingCartFigureRemove.src = 'assets/icons/icon_close.png';
+    shoppingCartFigureRemove.textContent = 'x';
     shoppingCartFigureRemove.alt = 'close';
     //const buttonRemoveFromCart = document.createElement('button');
     shoppingCartFigureRemove.classList.add('remove-from-cart-button');

@@ -265,6 +265,14 @@ aside {
     font-size: var(--md);
     font-weight: bold;
 }
+.remove-from-cart-button {
+    font-size: var(--xl);
+    color: var(--background-color);
+}
+.remove-from-cart-button:hover {
+    color: var(--store-green);
+    cursor: pointer;
+}
 .primary-button {
     background-color: var(--store-green);
     border: none;
