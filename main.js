@@ -291,6 +291,9 @@ function renderShoppingCartProducts(product) {
 function addShoppingCart() {
     // Add product to shopping cart
     renderShoppingCartProducts(currentProduct);
+
+    // Modify the shopping cart icon
+    modifyShoppingCartIcon();
 }
 
 // Function to update the total price
@@ -333,4 +336,35 @@ function removeShoppingCartProduct() {
 
     // Update the total price
     updateTotalPrice();
+
+    // Modify the shopping cart icon
+    modifyShoppingCartIcon();
+}
+
+// Function to modify the amount of a product in the shopping cart icon
+function modifyShoppingCartIcon() {
+    // Select the navbar shopping cart icon
+    const navbarShoppingCartIcon = document.querySelector('.navbar-shopping-cart');
+
+    // Select shopping cart product notifier counter
+    const shoppingCartProductNotifierCounter = document.querySelector('.cart-notifier');
+
+    // Select all the shopping cart products
+    const shoppingCartProducts = document.querySelectorAll('.shopping-cart');
+
+
+    // If there are shopping cart products
+    if (shoppingCartProducts.length > 0) {
+        // Modify the navbar shopping cart icon
+        navbarShoppingCartIcon.src = 'assets/icons/icon_shopping_cart_full.svg';
+
+        // Modify the shopping cart product notifier counter
+        shoppingCartProductNotifierCounter.textContent = shoppingCartProducts.length;
+    } else {
+        // Modify the navbar shopping cart icon
+        navbarShoppingCartIcon.src = 'assets/icons/icon_shopping_cart_empty.svg';
+
+        // Modify the shopping cart product notifier counter
+        shoppingCartProductNotifierCounter.textContent = '';
+    }
 }
