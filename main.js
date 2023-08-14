@@ -352,6 +352,8 @@ function modifyShoppingCartIcon() {
     // Select all the shopping cart products
     const shoppingCartProducts = document.querySelectorAll('.shopping-cart');
 
+    // Select the div containing the background color
+    const shoppingCartIconDiv = document.querySelector('.navbar-shopping-cart div');
 
     // If there are shopping cart products
     if (shoppingCartProducts.length > 0) {
@@ -360,11 +362,17 @@ function modifyShoppingCartIcon() {
 
         // Modify the shopping cart product notifier counter
         shoppingCartProductNotifierCounter.textContent = shoppingCartProducts.length;
+
+        // Add background color to the shopping cart icon div
+        shoppingCartIconDiv.style.backgroundColor = 'var(--store-green)';
     } else {
         // Modify the navbar shopping cart icon
         navbarShoppingCartIcon.src = 'assets/icons/icon_shopping_cart_empty.svg';
 
-        // Modify the shopping cart product notifier counter
+        // Clear the text content of the shopping cart product notifier counter
         shoppingCartProductNotifierCounter.textContent = '';
+
+        // Remove background color from the shopping cart icon div
+        shoppingCartIconDiv.style.backgroundColor = 'transparent';
     }
 }
