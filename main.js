@@ -14,6 +14,7 @@ const cardsContainer = $('.cards-container'); // Container for product cards
 
 const shoppingCartContainer = $('.shopping-cart-container');
 const shoppingCartProducts = $('.shopping-cart-products');
+const shoppingCartTitleContainer = $('.title-container');
 const productDetailContainer = $('.product-detail-container');
 
 
@@ -53,6 +54,10 @@ menuIcon.addEventListener('click', toggleMobileMenu);
 menuEmail.addEventListener('click', toggleDesktopMenu);
 // Add event listener to cartIcon to toggle product detail
 cartIcon.addEventListener('click', toggleshoppingCartContainer);
+// Add event listener to shoppingCartTitleContainer to close shopping cart
+shoppingCartTitleContainer.addEventListener('click', () => {
+    shoppingCartContainer.classList.add('inactive');
+});
 // Add event listener to hideProductDetail to close product detail container
 //hideProductDetail.addEventListener('click', hideProductDetailContainer);
 
