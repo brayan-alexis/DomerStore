@@ -235,6 +235,37 @@ function renderShoppingCartProducts(product) {
     const shoppingCart = document.createElement('div');
     shoppingCart.classList.add('shopping-cart');
 
+    // Counter for shopping cart products
+    const shoppingCartCounter = document.createElement('div');
+    shoppingCartCounter.classList.add('shopping-cart-counter');
+    shoppingCartCounter.textContent = '1';
+
+    // If the product is already in the shopping cart
+    if (shoppingCartProducts.querySelector(`[data-product-id="${product.id}"]`)) {
+        // Select the shopping cart product
+        const shoppingCartProduct = shoppingCartProducts.querySelector(`[data-product-id="${product.id}"]`);
+
+        // Select the shopping cart product counter
+        const shoppingCartProductCounter = shoppingCartProduct.querySelector('.shopping-cart-counter');
+
+        // Increase the shopping cart product counter
+        shoppingCartProductCounter.textContent = Number(shoppingCartProductCounter.textContent) + 1;
+
+        // Update the total price
+        updateTotalPrice();
+
+        // Modify the shopping cart icon
+        modifyShoppingCartIcon();
+
+        return;
+    }
+
+    // Add product id to shopping cart
+    shoppingCart.dataset.productId = product.id;
+
+    // Add shopping cart counter to shopping cart
+    shoppingCart.appendChild(shoppingCartCounter);
+
     // Figure
     const shoppingCartFigure = document.createElement('figure');
     const shoppingCartFigureImg = document.createElement('img');
@@ -313,7 +344,7 @@ function updateTotalPrice() {
     // Loop through all the shopping cart products
     shoppingCartProducts.forEach(shoppingCartProduct => {
         // Select the price of the current shopping cart product
-        const shoppingCartPrice = shoppingCartProduct.querySelector('p:nth-child(3)');
+        const shoppingCartPrice = shoppingCartProduct.querySelector('p:nth-child(4)');
 
         // Get the price value of the current shopping cart product
         const shoppingCartPriceValue = Number(shoppingCartPrice.textContent.replace('$', ''));

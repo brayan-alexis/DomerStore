@@ -194,7 +194,7 @@ nav {
 
 /* Aside Menu (product detail & shopping cart) */
 aside {
-    width: 22.5rem; /* 360px */
+    width: 25rem; /* 400px */
     position: absolute;
     right: 0;
     background-color: var(--white);
@@ -244,7 +244,7 @@ aside {
 }
 .shopping-cart {
     display: grid;
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: auto 1fr 2fr auto auto; /* 1fr 2fr 1fr 1fr */
     align-items: center;
     margin-bottom: 1.5rem; /* 24px */
     gap: 1rem; /* 16px */
@@ -261,7 +261,7 @@ aside {
 /* .shopping-cart p:nth-child(2) {
     color: var(--background-color);
 } */
-.shopping-cart p:nth-child(3) {
+.shopping-cart p:nth-child(4) {
     font-size: var(--md);
     font-weight: bold;
 }
