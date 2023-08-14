@@ -223,9 +223,18 @@ function renderProductDetail(product) {
     productDetailContainer.appendChild(divProductDetail);
 }
 
+// Function to add product to shopping cart
+function addShoppingCart() {
+    // Add product to shopping cart
+    renderShoppingCartProducts(currentProduct);
+
+    // Modify the shopping cart icon
+    modifyShoppingCartIcon();
+}
+
 // Function to render shopping cart products
 function renderShoppingCartProducts(product) {
-    const shoppingCartProducts = document.querySelector('.shopping-cart-products'); // Select the shopping cart products container
+    //const shoppingCartProducts = document.querySelector('.shopping-cart-products'); // Select the shopping cart products container
 
     // Create product container
     const productContainer = document.createElement('div');
@@ -235,36 +244,23 @@ function renderShoppingCartProducts(product) {
     const shoppingCart = document.createElement('div');
     shoppingCart.classList.add('shopping-cart');
 
+    // Multiple products
+    // const multipler = document.createElement('div');
+    // multipler.classList.add('multipler');
+    // multipler.textContent = 'x';
+
     // Counter for shopping cart products
     const shoppingCartCounter = document.createElement('div');
     shoppingCartCounter.classList.add('shopping-cart-counter');
     shoppingCartCounter.textContent = '1';
 
-    // If the product is already in the shopping cart
-    if (shoppingCartProducts.querySelector(`[data-product-id="${product.id}"]`)) {
-        // Select the shopping cart product
-        const shoppingCartProduct = shoppingCartProducts.querySelector(`[data-product-id="${product.id}"]`);
-
-        // Select the shopping cart product counter
-        const shoppingCartProductCounter = shoppingCartProduct.querySelector('.shopping-cart-counter');
-
-        // Increase the shopping cart product counter
-        shoppingCartProductCounter.textContent = Number(shoppingCartProductCounter.textContent) + 1;
-
-        // Update the total price
-        updateTotalPrice();
-
-        // Modify the shopping cart icon
-        modifyShoppingCartIcon();
-
+    // Check if the product already exists in the shopping cart
+    if (updateExistingCartItem(product)) {
         return;
     }
 
     // Add product id to shopping cart
     shoppingCart.dataset.productId = product.id;
-
-    // Add shopping cart counter to shopping cart
-    shoppingCart.appendChild(shoppingCartCounter);
 
     // Figure
     const shoppingCartFigure = document.createElement('figure');
@@ -295,7 +291,10 @@ function renderShoppingCartProducts(product) {
 
     shoppingCart.appendChild(shoppingCartFigure);
     shoppingCart.appendChild(shoppingCartTitle);
-    shoppingCart.appendChild(shoppingCartPrice);
+    // shoppingCart.appendChild(multipler); // Add multipler to shopping cart
+    shoppingCart.appendChild(shoppingCartPrice)
+    shoppingCart.appendChild(shoppingCartCounter); // Add shopping cart counter to shopping cart
+    ;
     shoppingCart.appendChild(shoppingCartFigureRemove);
 
     // Add shopping cart to the product container
@@ -318,13 +317,18 @@ function renderShoppingCartProducts(product) {
     updateTotalPrice();
 }
 
-// Function to add product to shopping cart
-function addShoppingCart() {
-    // Add product to shopping cart
-    renderShoppingCartProducts(currentProduct);
+function updateExistingCartItem(product) {
+    //const shoppingCartProducts = document.querySelector('.shopping-cart-products');
+    const shoppingCartProduct = shoppingCartProducts.querySelector(`.shopping-cart[data-product-id="${product.id}"]`);
 
-    // Modify the shopping cart icon
-    modifyShoppingCartIcon();
+    if (shoppingCartProduct) {
+        const shoppingCartCounter = shoppingCartProduct.querySelector('.shopping-cart-counter');
+        shoppingCartCounter.textContent = Number(shoppingCartCounter.textContent) + 1;
+        updateTotalPrice();
+        return true;
+    }
+
+    return false;
 }
 
 // Function to update the total price
@@ -343,18 +347,18 @@ function updateTotalPrice() {
 
     // Loop through all the shopping cart products
     shoppingCartProducts.forEach(shoppingCartProduct => {
-        // Select the price of the current shopping cart product
-        const shoppingCartPrice = shoppingCartProduct.querySelector('p:nth-child(4)');
+        const shoppingCartCounter = shoppingCartProduct.querySelector('.shopping-cart-counter');
+        const shoppingCartPrice = shoppingCartProduct.querySelector('p:nth-child(3)');
 
-        // Get the price value of the current shopping cart product
-        const shoppingCartPriceValue = Number(shoppingCartPrice.textContent.replace('$', ''));
+        const quantity = Number(shoppingCartCounter.textContent);
+        const pricePerItem = Number(shoppingCartPrice.textContent.replace('$', ''));
 
-        // Add the price value of the current shopping cart product to the total price
-        totalPriceValue += shoppingCartPriceValue;
+        // Add the price value of the current shopping cart product * quantity to the total price
+        totalPriceValue += quantity * pricePerItem;
     });
 
     // Update the total price
-    totalPrice.textContent = `$${totalPriceValue}.00`;
+    totalPrice.textContent = `$${totalPriceValue.toFixed(2)}`; // Use toFixed() to display decimal places if needed
 }
 
 // Function to remove shopping cart product
