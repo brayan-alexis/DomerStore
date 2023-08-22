@@ -213,10 +213,12 @@ aside {
 .title-container img {
     transform: rotate(180deg);
     margin-right: 1rem; /* 16px */
+    cursor: pointer;
 }
 .title {
     font-size: var(--lg);
     font-weight: bold;
+    cursor: pointer;
 }
 .order {
     display: flex;
